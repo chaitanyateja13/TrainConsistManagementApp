@@ -1,23 +1,7 @@
-import java.util.*;
+Set<String> bogieIds = new HashSet<>();
 
-public class TrainConsistManagementApp {
+bogieIds.add("B1");
+bogieIds.add("B2");
+bogieIds.add("B1"); // duplicate
 
-    public static void main(String[] args) {
-
-        System.out.println("=== Train Consist Management App ===");
-
-        List<String> bogies = new ArrayList<>();
-
-        bogies.add("Sleeper");
-        bogies.add("AC Chair");
-        bogies.add("First Class");
-
-        System.out.println("After Adding Bogies: " + bogies);
-
-        bogies.remove("AC Chair");
-
-        System.out.println("After Removal: " + bogies);
-
-        System.out.println("Contains Sleeper? " + bogies.contains("Sleeper"));
-    }
-}
+System.out.println("Unique Bogie IDs: " + bogieIds);
