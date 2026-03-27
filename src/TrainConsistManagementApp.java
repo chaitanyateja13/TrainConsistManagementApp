@@ -1,18 +1,30 @@
-import java.util.regex.*;
+import java.util.*;
 
 public class TrainConsistManagementApp {
 
+    static class GoodsBogie {
+        String type;
+        String cargo;
+
+        GoodsBogie(String type, String cargo) {
+            this.type = type;
+            this.cargo = cargo;
+        }
+    }
+
     public static void main(String[] args) {
 
-        System.out.println("=== UC11: Regex Validation ===");
+        System.out.println("=== UC12: Safety Check ===");
 
-        String trainId = "TRN-1234";
-        String cargo = "PET-AB";
+        List<GoodsBogie> list = List.of(
+                new GoodsBogie("Cylindrical", "Petroleum"),
+                new GoodsBogie("Box", "Coal")
+        );
 
-        Pattern trainPattern = Pattern.compile("TRN-\\d{4}");
-        Pattern cargoPattern = Pattern.compile("PET-[A-Z]{2}");
+        boolean safe = list.stream()
+                .allMatch(b ->
+                        !b.type.equals("Cylindrical") || b.cargo.equals("Petroleum"));
 
-        System.out.println("Train Valid: " + trainPattern.matcher(trainId).matches());
-        System.out.println("Cargo Valid: " + cargoPattern.matcher(cargo).matches());
+        System.out.println("Is Train Safe? " + safe);
     }
 }
