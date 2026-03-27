@@ -1,14 +1,17 @@
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Main {
+public class UC5 {
     public static void main(String[] args) {
-        Set<String> bogieIds = new HashSet<>();
 
-        bogieIds.add("B1");
-        bogieIds.add("B2");
-        bogieIds.add("B1"); // duplicate
+        Set<String> formation = new LinkedHashSet<>();
 
-        System.out.println("Unique Bogie IDs: " + bogieIds);
+        formation.add("Engine");
+        formation.add("Sleeper");
+        formation.add("Cargo");
+        formation.add("Guard");
+        formation.add("Sleeper"); // duplicate
+
+        System.out.println("Final Formation: " + formation);
     }
 }
