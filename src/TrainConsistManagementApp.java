@@ -1,17 +1,33 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class UC6 {
+public class TrainConsistManagementApp {
+
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+
+        public String toString() {
+            return name + " (" + capacity + ")";
+        }
+    }
+
     public static void main(String[] args) {
 
-        Map<String, Integer> capacityMap = new HashMap<>();
+        System.out.println("=== UC7: Sorting Bogies ===");
 
-        capacityMap.put("Sleeper", 72);
-        capacityMap.put("AC Chair", 60);
-        capacityMap.put("First Class", 30);
+        List<Bogie> bogies = new ArrayList<>();
 
-        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
-        }
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 30));
+
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+
+        System.out.println("Sorted Bogies: " + bogies);
     }
 }
