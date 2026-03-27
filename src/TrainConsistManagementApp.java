@@ -2,29 +2,22 @@ import java.util.*;
 
 public class TrainConsistManagementApp {
 
-    static class GoodsBogie {
-        String type;
-        String cargo;
-
-        GoodsBogie(String type, String cargo) {
-            this.type = type;
-            this.cargo = cargo;
-        }
-    }
-
     public static void main(String[] args) {
 
-        System.out.println("=== UC12: Safety Check ===");
+        System.out.println("=== UC13: Performance ===");
 
-        List<GoodsBogie> list = List.of(
-                new GoodsBogie("Cylindrical", "Petroleum"),
-                new GoodsBogie("Box", "Coal")
-        );
+        List<Integer> list = new ArrayList<>();
 
-        boolean safe = list.stream()
-                .allMatch(b ->
-                        !b.type.equals("Cylindrical") || b.cargo.equals("Petroleum"));
+        for (int i = 0; i < 100000; i++) {
+            list.add(i);
+        }
 
-        System.out.println("Is Train Safe? " + safe);
+        long start = System.nanoTime();
+
+        list.stream().filter(x -> x % 2 == 0).toList();
+
+        long end = System.nanoTime();
+
+        System.out.println("Time: " + (end - start));
     }
 }
