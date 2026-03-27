@@ -1,7 +1,14 @@
-Set<String> bogieIds = new HashSet<>();
+import java.util.HashSet;
+import java.util.Set;
 
-bogieIds.add("B1");
-bogieIds.add("B2");
-bogieIds.add("B1"); // duplicate
+public class Main {
+    public static void main(String[] args) {
+        Set<String> bogieIds = new HashSet<>();
 
-System.out.println("Unique Bogie IDs: " + bogieIds);
+        bogieIds.add("B1");
+        bogieIds.add("B2");
+        bogieIds.add("B1"); // duplicate
+
+        System.out.println("Unique Bogie IDs: " + bogieIds);
+    }
+}
