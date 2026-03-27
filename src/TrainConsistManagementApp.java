@@ -13,24 +13,23 @@ public class TrainConsistManagementApp {
         }
 
         public String toString() {
-            return name + " (" + capacity + ")";
+            return name;
         }
     }
 
     public static void main(String[] args) {
 
-        System.out.println("=== UC8: Filter Bogies ===");
+        System.out.println("=== UC9: Grouping Bogies ===");
 
-        List<Bogie> bogies = new ArrayList<>();
+        List<Bogie> bogies = List.of(
+                new Bogie("Sleeper", 72),
+                new Bogie("AC", 60),
+                new Bogie("Sleeper", 70)
+        );
 
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 60));
-        bogies.add(new Bogie("First Class", 30));
+        Map<String, List<Bogie>> grouped =
+                bogies.stream().collect(Collectors.groupingBy(b -> b.name));
 
-        List<Bogie> filtered = bogies.stream()
-                .filter(b -> b.capacity > 60)
-                .toList();
-
-        System.out.println("Filtered Bogies: " + filtered);
+        System.out.println(grouped);
     }
 }
