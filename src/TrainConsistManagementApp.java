@@ -1,10 +1,20 @@
-public static void linearSearch(String[] ids, String key) {
+public static void binarySearch(String[] ids, String key) {
+    int low = 0;
+    int high = ids.length - 1;
     boolean found = false;
 
-    for (String id : ids) {
-        if (id.equals(key)) {
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        int result = key.compareTo(ids[mid]);
+
+        if (result == 0) {
             found = true;
             break;
+        } else if (result > 0) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
     }
 
@@ -15,6 +25,6 @@ public static void linearSearch(String[] ids, String key) {
 }
 
 void main() {
-    String[] ids = {"B1", "B2", "B3", "B4"};
-    linearSearch(ids, "B3");
+    String[] sortedIds = {"B1", "B2", "B3", "B4"};
+    binarySearch(sortedIds, "B2");
 }
