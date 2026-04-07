@@ -1,14 +1,20 @@
-import java.util.Arrays;
+public static void linearSearch(String[] ids, String key) {
+    boolean found = false;
 
-public static void sortBogieNames() {
-    String[] bogies = {"Sleeper", "AC", "General", "Luxury"};
+    for (String id : ids) {
+        if (id.equals(key)) {
+            found = true;
+            break;
+        }
+    }
 
-    Arrays.sort(bogies);
-
-    System.out.println("Sorted Bogie Names:");
-    System.out.println(Arrays.toString(bogies));
+    if (found)
+        System.out.println("Bogie found: " + key);
+    else
+        System.out.println("Bogie not found");
 }
 
 void main() {
-    sortBogieNames();
+    String[] ids = {"B1", "B2", "B3", "B4"};
+    linearSearch(ids, "B3");
 }
