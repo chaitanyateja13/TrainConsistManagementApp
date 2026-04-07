@@ -1,31 +1,23 @@
-// Custom Runtime Exception
-class CargoSafetyException extends RuntimeException {
-    public CargoSafetyException(String message) {
-        super(message);
-    }
-}
+public static void bubbleSort(int[] capacities) {
+    int n = capacities.length;
 
-public class TrainConsistManagementApp {
-
-    public static void assignCargo(String bogieShape, String cargoType) {
-        try {
-            if (bogieShape.equalsIgnoreCase("rectangular") &&
-                    cargoType.equalsIgnoreCase("petroleum")) {
-                throw new CargoSafetyException("Unsafe cargo! Petroleum cannot be assigned to rectangular bogie.");
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (capacities[j] > capacities[j + 1]) {
+                int temp = capacities[j];
+                capacities[j] = capacities[j + 1];
+                capacities[j + 1] = temp;
             }
-
-            System.out.println("Cargo assigned successfully.");
-
-        } catch (CargoSafetyException e) {
-            System.out.println("ERROR: " + e.getMessage());
-
-        } finally {
-            System.out.println("Cargo assignment process completed.");
         }
     }
 
-    public static void main(String[] args) {
-        assignCargo("rectangular", "petroleum"); // will throw exception
-        assignCargo("cylindrical", "petroleum"); // safe case
+    System.out.println("Sorted Capacities:");
+    for (int c : capacities) {
+        System.out.print(c + " ");
     }
+}
+
+void main() {
+    int[] capacities = {50, 30, 70, 20};
+    bubbleSort(capacities);
 }
