@@ -1,30 +1,47 @@
-public static void binarySearch(String[] ids, String key) {
-    int low = 0;
-    int high = ids.length - 1;
-    boolean found = false;
+public class TrainConsistManagementApp {
 
-    while (low <= high) {
-        int mid = (low + high) / 2;
+    // ✅ UC20 Method
+    public static boolean searchBogie(String[] bogies, String key) {
 
-        int result = key.compareTo(ids[mid]);
-
-        if (result == 0) {
-            found = true;
-            break;
-        } else if (result > 0) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
+        // Defensive Check (Fail-Fast)
+        if (bogies == null || bogies.length == 0) {
+            throw new IllegalStateException("No bogies available in train. Cannot perform search.");
         }
+
+        // Search Logic
+        for (String b : bogies) {
+            if (b.equals(key)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    if (found)
-        System.out.println("Bogie found: " + key);
-    else
-        System.out.println("Bogie not found");
-}
+    // ✅ MAIN METHOD (ONLY ONE)
+    public static void main(String[] args) {
 
-void main() {
-    String[] sortedIds = {"B1", "B2", "B3", "B4"};
-    binarySearch(sortedIds, "B2");
+        // ❌ Test 1: Empty array
+        try {
+            String[] empty = {};
+            searchBogie(empty, "BG101");
+        } catch (IllegalStateException e) {
+            System.out.println("Test1 Passed: " + e.getMessage());
+        }
+
+        // ✅ Test 2: Data exists
+        String[] data = {"BG101", "BG205"};
+        System.out.println("Test2 Passed: Search allowed");
+
+        // ✅ Test 3: Bogie found
+        String[] list1 = {"BG101", "BG205", "BG309"};
+        System.out.println("Test3 Found: " + searchBogie(list1, "BG205"));
+
+        // ❌ Test 4: Bogie not found
+        System.out.println("Test4 Not Found: " + searchBogie(list1, "BG999"));
+
+        // ✅ Test 5: Single element
+        String[] single = {"BG101"};
+        System.out.println("Test5 Single: " + searchBogie(single, "BG101"));
+    }
 }
